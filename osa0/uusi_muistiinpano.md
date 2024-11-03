@@ -1,7 +1,8 @@
-sequenceDiagram
-    participant user as User
-    participant browser as Browser
-    participant server as Server
+
+    sequenceDiagram
+        participant user as User
+        participant browser as Browser
+        participant server as Server
     
     user->>browser: Clicks "Tallenna" button
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note with note content
