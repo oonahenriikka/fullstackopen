@@ -39,6 +39,10 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault();
+    if (!Array.isArray(persons)) {
+      console.error('persons is not an array:', persons);
+      return;
+    }
     const existingPerson = persons.find(person => person.name === newName);
     if (existingPerson) {
       if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
