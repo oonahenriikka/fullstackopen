@@ -17,8 +17,13 @@ const App = () => {
     PersonService
       .getAll()
       .then(initialPersons => {
+        if (Array.isArray(initialPersons)) {
         console.log('Received data:', initialPersons);
         setPersons(initialPersons);
+      } else {
+          console.error('Reveived data is not an array:', initialPersons);
+          setPersons([]);
+        }
       })
       .catch(error => {
         console.error('Error fetching persons:', error);
