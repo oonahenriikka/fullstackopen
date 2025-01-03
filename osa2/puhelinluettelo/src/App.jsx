@@ -17,7 +17,11 @@ const App = () => {
     PersonService
       .getAll()
       .then(initialPersons => {
+        console.log('Received data:', initialPersons);
         setPersons(initialPersons);
+      })
+      .catch(error => {
+        console.error('Error fetching persons:', error);
       });
   }, []);
 
@@ -116,9 +120,9 @@ const App = () => {
     return persons.some(person => person.name === name);
   };
 
-  const filteredPersons = persons.filter(person =>
+  const filteredPersons = Array.isArray(persons) ? persons.filter(person =>
     person.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  ) : [];
 
   return (
     <div>
