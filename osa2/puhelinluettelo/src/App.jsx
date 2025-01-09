@@ -93,7 +93,11 @@ const App = () => {
           }, 5000);
         })
         .catch(error => {
-          setNotificationMessage(`Error adding ${newName}`);
+          if (error.response && error.response.data && error.response.data.error) {
+          setNotificationMessage(error.response.data.error);
+          } else {
+            setNotificationMessage(`Error adding ${newName}`);
+          }
           setNotificationType('error');
           setTimeout(() => {
             setNotificationMessage(null);
